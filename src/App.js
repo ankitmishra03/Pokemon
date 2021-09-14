@@ -1,7 +1,6 @@
 import "./App.css";
 import { useState } from "react";
 import Axios from "axios";
-import Button from "@material-ui/core/Button";
 
 function App() {
   const [pokemonName, setpokemonName] = useState("");
@@ -16,6 +15,8 @@ function App() {
     type: "",
   });
   const searchPokemon = () => {
+    // pokemonName = pokemonName.toLowerCase;
+    console.log(pokemonName.toLowerCase());
     Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then(
       (response) => {
         console.log(response);
@@ -39,7 +40,7 @@ function App() {
         <input
           type="text"
           onChange={(event) => {
-            setpokemonName(event.target.value);
+            setpokemonName(event.target.value.toLowerCase());
           }}
         />
         <button onClick={searchPokemon}>Search Pokemon</button>
